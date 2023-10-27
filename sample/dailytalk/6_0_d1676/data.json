@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "6_0_d1676",
+        "text": "There, umm... we're about done.",
+        "speaker": 0,
+        "emotion": 3
+    },
+    "history": {
+        "id": [
+            "1_1_d1676",
+            "2_0_d1676",
+            "3_1_d1676",
+            "4_0_d1676",
+            "5_1_d1676"
+        ],
+        "text": [
+            "Sure did. It's a beauty. Where do you want it?",
+            "Let's put it over there.",
+            "Let's go to work. We want to have the tree ready to light up by evening.",
+            "Let's string the lights first. Then we won't have to mess up the decorations.",
+            "Hand me some globes and paper flowers, I'll put them on these top branches."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            3,
+            3,
+            3,
+            3,
+            3
+        ]
+    }
+}

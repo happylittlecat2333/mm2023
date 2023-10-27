@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "9_1_d1066",
+        "text": "How about the one next to the black gloves? It's very similar to the one you like.",
+        "speaker": 1,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "4_0_d1066",
+            "5_1_d1066",
+            "6_0_d1066",
+            "7_1_d1066",
+            "8_0_d1066"
+        ],
+        "text": [
+            "How much does it cost?",
+            "Fifty dollars.",
+            "Fifty dollars. That's too much.",
+            "How about this one? It's on sale for only thirty five dollars.",
+            "I don't like that one."
+        ],
+        "speaker": [
+            0,
+            1,
+            0,
+            1,
+            0
+        ],
+        "emotion": [
+            1,
+            1,
+            5,
+            1,
+            1
+        ]
+    }
+}

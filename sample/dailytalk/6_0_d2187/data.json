@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "6_0_d2187",
+        "text": "Great! Pasta for dinner.",
+        "speaker": 0,
+        "emotion": 3
+    },
+    "history": {
+        "id": [
+            "1_1_d2187",
+            "2_0_d2187",
+            "3_1_d2187",
+            "4_0_d2187",
+            "5_1_d2187"
+        ],
+        "text": [
+            "No, there's no such section. The dairy section is where you'll find milk and cheese.",
+            "What's Condiments?",
+            "That's where you'll find things like salt and pepper.",
+            "Oh, I see.",
+            "Umm... Let's go to aisle four to pick up some pasta for tonight."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

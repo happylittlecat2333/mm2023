@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "11_1_d1282",
+        "text": "Two seventy five dollars is the lowest price I can offer.",
+        "speaker": 1,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "6_0_d1282",
+            "7_1_d1282",
+            "8_0_d1282",
+            "9_1_d1282",
+            "10_0_d1282"
+        ],
+        "text": [
+            "It's more than I can afford. Can I make an offer?",
+            "How much are you willing to pay?",
+            "Shall we make it two fifty dollars?",
+            "No. That price would hardly cover the cost.",
+            "What about two sixty dollars?"
+        ],
+        "speaker": [
+            0,
+            1,
+            0,
+            1,
+            0
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            2,
+            1
+        ]
+    }
+}

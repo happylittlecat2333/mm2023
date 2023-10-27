@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "5_1_d986",
+        "text": "He is a nice guy and very considerate. I was impressed with how smart he was and he has a great sense of humor.",
+        "speaker": 1,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "0_0_d986",
+            "1_1_d986",
+            "2_0_d986",
+            "3_1_d986",
+            "4_0_d986"
+        ],
+        "text": [
+            "Mary, how was your date with John?",
+            "It's OK. It seems we have a lot in common.",
+            "Oh, really. That is great news. What does he look like?",
+            "He is tall and slim, fair-haired.",
+            "Sounds like he is pretty cute. What do you think of him?"
+        ],
+        "speaker": [
+            0,
+            1,
+            0,
+            1,
+            0
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

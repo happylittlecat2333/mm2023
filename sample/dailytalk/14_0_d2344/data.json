@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "14_0_d2344",
+        "text": "Yeah. Well, anyway, it's up to you. But I can tell that you come here often.",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "9_1_d2344",
+            "10_0_d2344",
+            "11_1_d2344",
+            "12_0_d2344",
+            "13_1_d2344"
+        ],
+        "text": [
+            "Really? I bought a same one last week. It's surprising that there is something we both like. Well, what do you think of these ceramic cups?",
+            "Come on. They look so cheap. Something else, please.",
+            "What about this picture? I think Benjamin would like it.",
+            "Don't underestimate his taste. I don't think he'd like it.",
+            "Don't be so sure. He loves the vase I bought here last week."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            3,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

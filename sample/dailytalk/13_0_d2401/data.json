@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "13_0_d2401",
+        "text": "That sounds attractive, all right, how about that we sign a one year contract?",
+        "speaker": 0,
+        "emotion": 3
+    },
+    "history": {
+        "id": [
+            "8_1_d2401",
+            "9_0_d2401",
+            "10_1_d2401",
+            "11_0_d2401",
+            "12_1_d2401"
+        ],
+        "text": [
+            "We deal with kid's clothing, women's clothing, and men's clothing. You name it we deal with it.",
+            "That's nice. They provided us with convenient choice.",
+            "As for the regular customers, we have some favorable terms for them.",
+            "I'd like to hear that.",
+            "For the substantial regular customers, we offer five percent commissions."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

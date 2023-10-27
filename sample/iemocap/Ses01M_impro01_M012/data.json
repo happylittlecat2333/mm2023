@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses01M_impro01_M012",
+        "text": "I probably have to go wait another line to get my birth certificate don't I?",
+        "speaker": 0,
+        "emotion": 5
+    },
+    "history": {
+        "id": [
+            "Ses01M_impro01_M006",
+            "Ses01M_impro01_M007",
+            "Ses01M_impro01_F007",
+            "Ses01M_impro01_F008",
+            "Ses01M_impro01_M008",
+            "Ses01M_impro01_M009",
+            "Ses01M_impro01_M010",
+            "Ses01M_impro01_F010",
+            "Ses01M_impro01_M011",
+            "Ses01M_impro01_F011"
+        ],
+        "text": [
+            "Yes.  I'm supposed to have three forms of ID for this.  It's a long story, I'm supposed to have three forms of ID for this other job I really don't get into but I need another...",
+            "I have it right here, yes.",
+            "No, I need your ID to give you a second ID.",
+            "It's really simple if you have a problem with it... Maybe you should--",
+            "But that's...",
+            "That's why I'm here, that's why I was waiting in this line.  I need to get another form of ID.",
+            "No, I don't have a passport.",
+            "You have a birth certificate?",
+            "I don't where it is though, I don't have with me.  Can I get it from somewhere?  I mean...",
+            "What do you expect me to do?"
+        ],
+        "speaker": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            5,
+            5,
+            3,
+            3,
+            5,
+            5,
+            2,
+            5,
+            5,
+            3
+        ]
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "7_0_d1171",
+        "text": "Don’t worry, madam. Umm I guess we should get there not later than one:thirty p.m.",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "2_1_d1171",
+            "3_0_d1171",
+            "4_1_d1171",
+            "5_0_d1171",
+            "6_1_d1171"
+        ],
+        "text": [
+            "Driver, can you please speed up? I m afraid I might miss the flight.",
+            "I'm sorry, madam, there’s a limit to the speed.",
+            "Damn it! I think I'm going to miss the plane.",
+            "I'm sorry about that. What’s your flight time?",
+            "At two."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            2,
+            6,
+            1,
+            1
+        ]
+    }
+}

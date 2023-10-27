@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses04F_impro07_M077",
+        "text": "Well do you think you're going to live on campus or off campus your first year?",
+        "speaker": 6,
+        "emotion": 2
+    },
+    "history": {
+        "id": [
+            "Ses04F_impro07_M067",
+            "Ses04F_impro07_F064",
+            "Ses04F_impro07_F065",
+            "Ses04F_impro07_M070",
+            "Ses04F_impro07_F066",
+            "Ses04F_impro07_M071",
+            "Ses04F_impro07_M072",
+            "Ses04F_impro07_M073",
+            "Ses04F_impro07_F070",
+            "Ses04F_impro07_M076"
+        ],
+        "text": [
+            "But that'll fit you  because you're a dork.",
+            "[LAUGHTER].",
+            "[LAUGHTER].",
+            "I dork.",
+            "No.  But I'm thinking I might, you know, like audition for a play or something.  I don't really want to do the sorority thing.  I'm not really feeling that vibe with the",
+            "Yeah, you don't want to do the sorority thing because you'll probably get used and abused by",
+            "lots of drunk frat boys",
+            "Yeah.",
+            "What have you heard about the Greek system?",
+            "I mean it's not really free because you have to pay for it, but yeah."
+        ],
+        "speaker": [
+            6,
+            7,
+            7,
+            6,
+            7,
+            6,
+            6,
+            6,
+            7,
+            6
+        ],
+        "emotion": [
+            2,
+            4,
+            4,
+            4,
+            4,
+            2,
+            2,
+            2,
+            4,
+            2
+        ]
+    }
+}

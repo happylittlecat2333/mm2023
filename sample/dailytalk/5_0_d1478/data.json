@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "5_0_d1478",
+        "text": "Not even drinking milk for one month would get us like that.",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "0_1_d1478",
+            "1_0_d1478",
+            "2_1_d1478",
+            "3_0_d1478",
+            "4_1_d1478"
+        ],
+        "text": [
+            "I'm so hungry! I haven't late eaten all day!",
+            "Take your mind off it. Look, Crys. This magazine is on China's top ten beauties!",
+            "They're all so thin! Her cheekbones are great.",
+            "She doesn't have an ounce of fat on her face.",
+            "Umm the mag says she's one sixty five centimeters tall and thirty eight kilos. If only we could be that thin then..."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

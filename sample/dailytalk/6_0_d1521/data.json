@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "6_0_d1521",
+        "text": "Oooo. This sounds serious.",
+        "speaker": 0,
+        "emotion": 2
+    },
+    "history": {
+        "id": [
+            "1_1_d1521",
+            "2_0_d1521",
+            "3_1_d1521",
+            "4_0_d1521",
+            "5_1_d1521"
+        ],
+        "text": [
+            "No, thanks, I'll pass. It looks very tempting though.",
+            "I thought strawberry cake with cream cheese frosting was your favorite?",
+            "It is. I'm on a diet and strawberry cream cheese cake is not on it.",
+            "A diet? What for? You are in great shape.",
+            "I went to the doctor the other day. My cholesterol is up."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

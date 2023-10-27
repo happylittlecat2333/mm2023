@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "8_1_d9",
+        "text": "Yes. It's so strange that he slept all the time after taking the pills.",
+        "speaker": 1,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "3_0_d9",
+            "4_1_d9",
+            "5_0_d9",
+            "6_1_d9",
+            "7_0_d9"
+        ],
+        "text": [
+            "Poor boy! But don't worry. Here are two pills made in Germany. It's really effective. He will be just fine.",
+            "Thank you so much.",
+            "Take some with you next time, just in case.",
+            "Sorry to interrupt, but my brother is still sleeping.",
+            "You mean the boy who felt carsick just now?"
+        ],
+        "speaker": [
+            0,
+            1,
+            0,
+            1,
+            0
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

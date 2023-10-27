@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "5_0_d739",
+        "text": "The survey said that the low, income groups eat more junk food on a daily basis.",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "0_1_d739",
+            "1_0_d739",
+            "2_1_d739",
+            "3_0_d739",
+            "4_1_d739"
+        ],
+        "text": [
+            "Why are there still so many people overweight despite the current fitness craze?",
+            "Well, there are certain factors that effect people's size and weight.",
+            "What are they?",
+            "Umm one study said that low-income groups have a higher percentage of over-weight people than higher income families.",
+            "Why?"
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

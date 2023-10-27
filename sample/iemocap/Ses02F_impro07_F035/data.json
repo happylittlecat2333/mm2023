@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses02F_impro07_F035",
+        "text": "I know. I know. So fun.  I can't wait.",
+        "speaker": 3,
+        "emotion": 4
+    },
+    "history": {
+        "id": [
+            "Ses02F_impro07_F027",
+            "Ses02F_impro07_F028",
+            "Ses02F_impro07_F029",
+            "Ses02F_impro07_M029",
+            "Ses02F_impro07_F030",
+            "Ses02F_impro07_F031",
+            "Ses02F_impro07_F032",
+            "Ses02F_impro07_F033",
+            "Ses02F_impro07_F034",
+            "Ses02F_impro07_M034"
+        ],
+        "text": [
+            "And you'll be like...",
+            "Student. I'm a student. Yes I am, Thank you very much.",
+            "[BREATHING]",
+            "A U.S.C. graduate now. You're set.",
+            "I know.  I'm excited.",
+            "Well, that'll take a while. [GARBAGE]",
+            "That's going to be a lot of work.",
+            "But, it'll be fine, I mean.  I'm so excited. It's going to be so fun.",
+            "I know, and I mean the area's not great, but like the school makes up for it. It'll be fine. It'll be good.",
+            "You're getting close to the beach.  I mean geez."
+        ],
+        "speaker": [
+            3,
+            3,
+            3,
+            2,
+            3,
+            3,
+            3,
+            3,
+            3,
+            2
+        ],
+        "emotion": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+        ]
+    }
+}

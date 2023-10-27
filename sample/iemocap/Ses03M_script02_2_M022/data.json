@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses03M_script02_2_M022",
+        "text": "You want this to be like the other time right?  That's it right?",
+        "speaker": 4,
+        "emotion": 2
+    },
+    "history": {
+        "id": [
+            "Ses03M_script02_2_M014",
+            "Ses03M_script02_2_F016",
+            "Ses03M_script02_2_M015",
+            "Ses03M_script02_2_M017",
+            "Ses03M_script02_2_M018",
+            "Ses03M_script02_2_F017",
+            "Ses03M_script02_2_F018",
+            "Ses03M_script02_2_M019",
+            "Ses03M_script02_2_M020",
+            "Ses03M_script02_2_M021"
+        ],
+        "text": [
+            "Well, we're going to see it.",
+            "No we won't.  I mean, God, this isn't about the fish Augie.",
+            "What...I've been trying to, I've been trying to figure out the point where we went wrong and I can't seem to pinpoint that moment.",
+            "Let's see I took a shower, you were watching the news, you said hey, hey the Grunions are running tonight and I said great let's go, I feel lucky tonight.",
+            "And then I'm putting the animals out in the yard, I'm pulling the car out of the garage, putting my jacket on.",
+            "Look, do you remember the first time we came here?",
+            "We thought I was pregnant.",
+            "Wait a minute.  I've got it.",
+            "It was in the car right?  Driving past the Knickerbocker Liquor Locker...",
+            "And you said let's get some champagne and I said time's a wasting or something like that."
+        ],
+        "speaker": [
+            4,
+            5,
+            4,
+            4,
+            4,
+            5,
+            5,
+            4,
+            4,
+            4
+        ],
+        "emotion": [
+            2,
+            3,
+            5,
+            2,
+            5,
+            5,
+            1,
+            2,
+            2,
+            2
+        ]
+    }
+}

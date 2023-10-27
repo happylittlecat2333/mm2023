@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "6_0_d1730",
+        "text": "It's not good to start with too much work-out at the beginning. How about trying something else?",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "1_1_d1730",
+            "2_0_d1730",
+            "3_1_d1730",
+            "4_0_d1730",
+            "5_1_d1730"
+        ],
+        "text": [
+            "Thanks to you. I'm totally pumped up.",
+            "Umm so you are happy that you made the decision to join us.",
+            "I surely am. But still there is one single problem.",
+            "What's that?",
+            "I eat more and more these days. And it puts even more weight on me."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            3,
+            3,
+            1,
+            1,
+            1
+        ]
+    }
+}

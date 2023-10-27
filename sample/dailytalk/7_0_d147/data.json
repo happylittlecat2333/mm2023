@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "7_0_d147",
+        "text": "That's cool. I'll watch it.",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "2_1_d147",
+            "3_0_d147",
+            "4_1_d147",
+            "5_0_d147",
+            "6_1_d147"
+        ],
+        "text": [
+            "Won't you watch TV?",
+            "What's on TV tonight \\? Is there a football match?",
+            "The TV station will air the World Cup football match alive at eight:thirty.",
+            "Really? Who will play?",
+            "Umm the Brazilian team versus the American team. Don't miss it."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            5,
+            1
+        ]
+    }
+}

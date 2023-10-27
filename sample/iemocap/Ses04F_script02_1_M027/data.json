@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses04F_script02_1_M027",
+        "text": "a little bit of the unexplainable.  I don't see how you cannot be interested.",
+        "speaker": 6,
+        "emotion": 5
+    },
+    "history": {
+        "id": [
+            "Ses04F_script02_1_M020",
+            "Ses04F_script02_1_M021",
+            "Ses04F_script02_1_F013",
+            "Ses04F_script02_1_M022",
+            "Ses04F_script02_1_M023",
+            "Ses04F_script02_1_F014",
+            "Ses04F_script02_1_M024",
+            "Ses04F_script02_1_F015",
+            "Ses04F_script02_1_M025",
+            "Ses04F_script02_1_M026"
+        ],
+        "text": [
+            "Honey this is natural phenomenon.  I mean this only happens once a year.  This is a great opportunity.",
+            "Think about the people in Kansas.  They'd have to get plane tickets and hotel reservations to come see this.  We're just forty minutes away.  It's too good to pass up.",
+            "Pass up what?  These little fish swim onto the beach, flop around, and then swim away and then they die.",
+            "Yeah but that moment on the beach is the highlight of their little lives.  All that flopping around is laying eggs or what do you, spawning or mating something like that.",
+            "This is the big night for these guys.  Life's last orgy.",
+            "What are you so excited about?  This isn't a moon landing we're talking about.  It's fish.  It's fish nobody even eats.",
+            "Yeah, they do.",
+            "Oh, Augie.",
+            "Okay but it's fish who do something none of the other fish do",
+            "like the swallows returning to Capistrano or the lemmings throwing themselves off the cliffs, like that.  There's mystery here and magic"
+        ],
+        "speaker": [
+            6,
+            6,
+            7,
+            6,
+            6,
+            7,
+            6,
+            7,
+            6,
+            6
+        ],
+        "emotion": [
+            5,
+            4,
+            3,
+            5,
+            4,
+            3,
+            5,
+            5,
+            5,
+            4
+        ]
+    }
+}

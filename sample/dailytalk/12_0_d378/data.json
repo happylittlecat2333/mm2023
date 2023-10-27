@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "12_0_d378",
+        "text": "You must have been devastated!",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "7_1_d378",
+            "8_0_d378",
+            "9_1_d378",
+            "10_0_d378",
+            "11_1_d378"
+        ],
+        "text": [
+            "Definitely. rich or poor, dogs always love their masters.",
+            "How about cats? Have you ever had one for a pet?",
+            "I had one a few months ago, but she ended up running away.",
+            "How did that happen?",
+            "She left through a window that was open one night and never returned."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            3,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

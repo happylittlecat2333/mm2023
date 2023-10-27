@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses04F_script02_1_F013",
+        "text": "Pass up what?  These little fish swim onto the beach, flop around, and then swim away and then they die.",
+        "speaker": 7,
+        "emotion": 3
+    },
+    "history": {
+        "id": [
+            "Ses04F_script02_1_F008",
+            "Ses04F_script02_1_M016",
+            "Ses04F_script02_1_F009",
+            "Ses04F_script02_1_M017",
+            "Ses04F_script02_1_F010",
+            "Ses04F_script02_1_M018",
+            "Ses04F_script02_1_F011",
+            "Ses04F_script02_1_F012",
+            "Ses04F_script02_1_M020",
+            "Ses04F_script02_1_M021"
+        ],
+        "text": [
+            "There is no point in coming down here.",
+            "Right.",
+            "That's my point.",
+            "That's my point too.",
+            "So let's go home.",
+            "No, no, no.  That's not my point.  My point is is that there's no point in coming down here if we just leave.  Don't you want to see it?",
+            "Not particularly.",
+            "I just don't.  It's stupid.",
+            "Honey this is natural phenomenon.  I mean this only happens once a year.  This is a great opportunity.",
+            "Think about the people in Kansas.  They'd have to get plane tickets and hotel reservations to come see this.  We're just forty minutes away.  It's too good to pass up."
+        ],
+        "speaker": [
+            7,
+            6,
+            7,
+            6,
+            7,
+            6,
+            7,
+            7,
+            6,
+            6
+        ],
+        "emotion": [
+            3,
+            5,
+            5,
+            2,
+            5,
+            5,
+            5,
+            3,
+            5,
+            4
+        ]
+    }
+}

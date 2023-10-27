@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "7_1_d563",
+        "text": "It has clothes in small sizes for small women.",
+        "speaker": 1,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "2_0_d563",
+            "3_1_d563",
+            "4_0_d563",
+            "5_1_d563",
+            "6_0_d563"
+        ],
+        "text": [
+            "But I can't find anything in my size here.",
+            "Umm you're small, but you're not a child.",
+            "Well, there's nothing I can do about my height!",
+            "There's a petite section that you can check out.",
+            "What's in the petite section?"
+        ],
+        "speaker": [
+            0,
+            1,
+            0,
+            1,
+            0
+        ],
+        "emotion": [
+            1,
+            1,
+            6,
+            1,
+            1
+        ]
+    }
+}

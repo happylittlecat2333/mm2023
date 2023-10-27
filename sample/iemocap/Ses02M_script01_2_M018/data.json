@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses02M_script01_2_M018",
+        "text": "What have I got to hide? What the hell is the matter with you, Kate?",
+        "speaker": 2,
+        "emotion": 5
+    },
+    "history": {
+        "id": [
+            "Ses02M_script01_2_M012",
+            "Ses02M_script01_2_F013",
+            "Ses02M_script01_2_M013",
+            "Ses02M_script01_2_F014",
+            "Ses02M_script01_2_M014",
+            "Ses02M_script01_2_F015",
+            "Ses02M_script01_2_F016",
+            "Ses02M_script01_2_M016",
+            "Ses02M_script01_2_M017",
+            "Ses02M_script01_2_F017"
+        ],
+        "text": [
+            "Calm yourself.",
+            "I need you to believe with me; I can't stand all alone.",
+            "Calm yourself.",
+            "Even last week there was a man who showed up in Detroit missing longer than Larry, you read it yourself.",
+            "All right. All right. Calm yourself.",
+            "Just you above all need to believe.",
+            "Don't stop believing.",
+            "What does that mean, me above all?",
+            "Look at you -- look at you shaking.",
+            "I can't help it."
+        ],
+        "speaker": [
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            3,
+            2,
+            2,
+            3
+        ],
+        "emotion": [
+            5,
+            1,
+            5,
+            5,
+            5,
+            5,
+            5,
+            3,
+            3,
+            5
+        ]
+    }
+}

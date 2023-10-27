@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses03M_script02_2_F033",
+        "text": "Cause everything isn't anything like I thought it would be.",
+        "speaker": 5,
+        "emotion": 3
+    },
+    "history": {
+        "id": [
+            "Ses03M_script02_2_F029",
+            "Ses03M_script02_2_F030",
+            "Ses03M_script02_2_F031",
+            "Ses03M_script02_2_M028",
+            "Ses03M_script02_2_M029",
+            "Ses03M_script02_2_M030",
+            "Ses03M_script02_2_M031",
+            "Ses03M_script02_2_F032",
+            "Ses03M_script02_2_M032",
+            "Ses03M_script02_2_M033"
+        ],
+        "text": [
+            "No...No...No...",
+            "No...",
+            "I want things to turn out the way that they're supposed to be.",
+            "Welcome to the human race.",
+            "Do you think that this is what I had in mind?  That four years down the line that we'd get married and come to the beach and argue with each other over fish?  No.",
+            "I was just like you.  I thought it was going to be all peaches and roses and everything great and the sand in our toes and the wind in our hair and the fish will always come and the bills will pay themselves and we'd have three big fat rosy kids...",
+            "...and you know?  Baby the jokes on us.  Because you know what you get?  Do you know what you get Carla?  You get this.",
+            "This what...what's this?  This isn't anything. Alright.  Sure.  Standing on the beach, fighting and waiting.",
+            "Yes it is.",
+            "Right."
+        ],
+        "speaker": [
+            5,
+            5,
+            5,
+            4,
+            4,
+            4,
+            4,
+            5,
+            4,
+            4
+        ],
+        "emotion": [
+            5,
+            5,
+            3,
+            3,
+            3,
+            3,
+            3,
+            5,
+            3,
+            3
+        ]
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses01M_impro01_M019",
+        "text": "No, I don't have driver's license.",
+        "speaker": 0,
+        "emotion": 5
+    },
+    "history": {
+        "id": [
+            "Ses01M_impro01_M011",
+            "Ses01M_impro01_F011",
+            "Ses01M_impro01_M012",
+            "Ses01M_impro01_F012",
+            "Ses01M_impro01_M013",
+            "Ses01M_impro01_M015",
+            "Ses01M_impro01_F015",
+            "Ses01M_impro01_M016",
+            "Ses01M_impro01_M017",
+            "Ses01M_impro01_M018"
+        ],
+        "text": [
+            "I don't where it is though, I don't have with me.  Can I get it from somewhere?  I mean...",
+            "What do you expect me to do?",
+            "I probably have to go wait another line to get my birth certificate don't I?",
+            "Probably.",
+            "You're very helpful.  What's your name?",
+            "So can you help me or not?",
+            "I am..I don't..I don't understand what you want.  A driver's license or a California ID.",
+            "Okay. [BREATHING]",
+            "I need California ID.",
+            "On top of these other two forms of ID which I already have."
+        ],
+        "speaker": [
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+        ],
+        "emotion": [
+            5,
+            3,
+            5,
+            3,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5
+        ]
+    }
+}

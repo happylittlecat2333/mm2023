@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "13_0_d739",
+        "text": "Hey, I started a diet and lost ten pounds.",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "8_1_d739",
+            "9_0_d739",
+            "10_1_d739",
+            "11_0_d739",
+            "12_1_d739"
+        ],
+        "text": [
+            "What's that?",
+            "Nobody exercises any more-not even kids! The average American home has the TV on for six hours a day!",
+            "Wow! No wonder people are so fat. Say, Carl, looks like you could be doing a bit more exercising.",
+            "Yeah, I guess so.",
+            "You should consider eating healthier food and getting some more exercise."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            5,
+            1,
+            1
+        ]
+    }
+}

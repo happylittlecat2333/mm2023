@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses04F_script02_1_M031",
+        "text": "We just weren't in a good spot.  This is a much better spot.",
+        "speaker": 6,
+        "emotion": 3
+    },
+    "history": {
+        "id": [
+            "Ses04F_script02_1_M024",
+            "Ses04F_script02_1_F015",
+            "Ses04F_script02_1_M025",
+            "Ses04F_script02_1_M026",
+            "Ses04F_script02_1_M027",
+            "Ses04F_script02_1_F016",
+            "Ses04F_script02_1_F017",
+            "Ses04F_script02_1_M029",
+            "Ses04F_script02_1_M030",
+            "Ses04F_script02_1_F019"
+        ],
+        "text": [
+            "Yeah, they do.",
+            "Oh, Augie.",
+            "Okay but it's fish who do something none of the other fish do",
+            "like the swallows returning to Capistrano or the lemmings throwing themselves off the cliffs, like that.  There's mystery here and magic",
+            "a little bit of the unexplainable.  I don't see how you cannot be interested.",
+            "I'm just not.",
+            "Yes.",
+            "I don't get it.  The first time we came here to see it you said it was the best night of your life and last year I remember distinctly you were so excited to get here.  You stubbed your toe rushing me out the door and didn't even notice until we were in the car.",
+            "We weren't in a good spot.",
+            "We didn't see them the first time either."
+        ],
+        "speaker": [
+            6,
+            7,
+            6,
+            6,
+            6,
+            7,
+            7,
+            6,
+            6,
+            7
+        ],
+        "emotion": [
+            5,
+            5,
+            5,
+            4,
+            5,
+            3,
+            3,
+            5,
+            5,
+            3
+        ]
+    }
+}

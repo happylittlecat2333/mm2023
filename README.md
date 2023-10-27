@@ -1,2 +1,1 @@
-# MM 2023
-This is the demo page
+# This is ACM MM 2023 demo page.

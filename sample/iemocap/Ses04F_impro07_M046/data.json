@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses04F_impro07_M046",
+        "text": "I can see it in your eyes.  You want to go.",
+        "speaker": 6,
+        "emotion": 4
+    },
+    "history": {
+        "id": [
+            "Ses04F_impro07_M041",
+            "Ses04F_impro07_F038",
+            "Ses04F_impro07_M042",
+            "Ses04F_impro07_F039",
+            "Ses04F_impro07_M043",
+            "Ses04F_impro07_F040",
+            "Ses04F_impro07_M044",
+            "Ses04F_impro07_F041",
+            "Ses04F_impro07_M045",
+            "Ses04F_impro07_F042"
+        ],
+        "text": [
+            "Wait, you've been there before?",
+            "On occasion I've heard of it.",
+            "Oh, so well then you know that it's awesome.",
+            "Yeah.  Totally.",
+            "Right, so we'll go there and then- and then we'll get some ice cream and maybe we'll go putt-putt golfing.",
+            "I am totally down with the ice cream.",
+            "Okay.  Putt-putt golfing?",
+            "Eh, we can work that part out.",
+            "Yeah, you want to go.  No, you want to go. You want to go.",
+            "Alright."
+        ],
+        "speaker": [
+            6,
+            7,
+            6,
+            7,
+            6,
+            7,
+            6,
+            7,
+            6,
+            7
+        ],
+        "emotion": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2,
+            4,
+            4,
+            4
+        ]
+    }
+}

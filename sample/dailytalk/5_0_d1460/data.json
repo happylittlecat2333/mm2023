@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "5_0_d1460",
+        "text": "OK. I'll take this one.",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "0_1_d1460",
+            "1_0_d1460",
+            "2_1_d1460",
+            "3_0_d1460",
+            "4_1_d1460"
+        ],
+        "text": [
+            "May I help you?",
+            "Yes. I'm looking for some perfume. Do you have perfumes with a light scent?",
+            "How about this one? It smells like green tea and is our best seller. Try it.",
+            "It does smell good, How much is it?",
+            "It goes for fourty dollars."
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

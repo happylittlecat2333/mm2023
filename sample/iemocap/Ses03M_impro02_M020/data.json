@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses03M_impro02_M020",
+        "text": "The last guy who said no was fired.",
+        "speaker": 4,
+        "emotion": 5
+    },
+    "history": {
+        "id": [
+            "Ses03M_impro02_F015",
+            "Ses03M_impro02_F016",
+            "Ses03M_impro02_M015",
+            "Ses03M_impro02_F017",
+            "Ses03M_impro02_M016",
+            "Ses03M_impro02_M017",
+            "Ses03M_impro02_M018",
+            "Ses03M_impro02_F018",
+            "Ses03M_impro02_M019",
+            "Ses03M_impro02_F019"
+        ],
+        "text": [
+            "It's not the same thing.  It's not like having you here.",
+            "I can't do this.",
+            "You can do it.  Alright?  You can, you can be strong, you can be strong for both of us alright?",
+            "I'm sick of being strong-- --for us.",
+            "I don't know what to do.",
+            "I don't want to - I don't- I don't want to go.",
+            "What am I supposed to do?",
+            "You can say no?",
+            "You know I can't say no.",
+            "You could.  You really could.  You could-- --get into another line of work.  I could start working after Anna's born?"
+        ],
+        "speaker": [
+            5,
+            5,
+            4,
+            5,
+            4,
+            4,
+            4,
+            5,
+            4,
+            5
+        ],
+        "emotion": [
+            1,
+            1,
+            2,
+            1,
+            1,
+            5,
+            5,
+            5,
+            1,
+            5
+        ]
+    }
+}

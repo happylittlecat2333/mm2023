@@ -1,2 +1,1486 @@
-# MM2023
-This is the demo page
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+        <!-- Begin Jekyll SEO tag v2.7.1 -->
+        <title>CMCU-CSS: Enhancing Naturalness via Commonsense-based Multi-modal Context Understanding in Conversational Speech Synthesis</title>
+        <meta name="generator" content="Jekyll v3.9.0">
+        <meta property="og:title"
+                content="CMCU-CSS: Enhancing Naturalness via Commonsense-based Multi-modal Context Understanding in Conversational Speech Synthesis">
+        <meta property="og:locale" content="en_US">
+        <link rel="canonical" href="https://happylittlecat2333.github.io/mm2023/">
+        <meta property="og:url" content="https://happylittlecat2333.github.io/mm2023/">
+        <meta name="twitter:card" content="summary">
+        <!-- End Jekyll SEO tag -->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#157878">
+        <link rel="stylesheet" href="./style.css">
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1023.0" data-gr-ext-installed="">
+    <section class="page-header">
+
+    </section>
+    <section class="main-content">
+    <h1 id=""><center> CMCU-CSS: Enhancing Naturalness via Commonsense-based Multi-modal Context Understanding in Conversational Speech Synthesis</center></h1>
+
+    <center> Yayue Deng<sup>*,1</sup>, Jinlong Xue<sup>*,1</sup>, Fengping Wang<sup>1</sup>, Yingming Gao<sup>1</sup>, Ya Li<sup>&dagger;,1</sup>,</center>
+<br>
+<center> <sup>1</sup> Beijing University of Posts and Telecommunications, Beijing, China</center>
+
+
+    <h2 id="abstract">Abstract</h2>
+    <p>Conversational Speech Synthesis (CSS) aims to produce speech appropriate for oral communication. However, the complexity of context dependency modeling poses significant challenges in the field of CSS, especially the mutual psychological influence between interlocutors. Previous studies have verified that prior commonsense knowledge helps machines understand subtle psychological information (e.g., feelings and intentions) in spontaneous oral dialogues. Therefore, to enhance context understanding and improve the naturalness of synthesized speech, we propose a novel conversational speech synthesis system (CMCU-CSS) that incorporates the Commonsense-based Multi-modal Context Understanding (CMCU) module to model the dynamic emotional interaction among interlocutors. Specifically, we first utilize three implicit states (intent state, internal state and external state) in CMCU to model the context dependency between inter/intra speakers with the help of commonsense knowledge. Furthermore, we infer emotion vectors from the fusion of these implicit states and multi-modal features to enhance the emotion discriminability of synthesized speech. This is the first attempt to combine commonsense knowledge with conversational speech synthesis, and its effect in terms of emotion discriminability of synthetic speech is evaluated by emotion recognition in conversation task. The results of subjective and objective evaluations demonstrate that the CMCU-CSS model achieves more natural speech with context-appropriate emotion and is equipped with the best emotion discriminability, surpassing that of other conversational speech synthesis models.</p>
+    <br>
+    <h2><p class="toc_title">Contents</p></h2>
+    <div id="toc_container">
+    <ul>
+        <li><a href="#1">Model Architecture</a></li>
+        <li><a href="#2">Compared Models</a></li>
+        <li><a href="#3">Evaluation on DailyTalk Dataset</a></li>
+        <li><a href="#4">Evaluation on IEMOCAP Dataset</a></li>
+
+    <!-- <li><a href="#1">Evaluation on DailyTalk Dataset</a></li>
+    <li><a href="#2">Evaluation on IEMOCAP Dataset</a></li> -->
+    </ul>
+    </div>
+    <br>
+    <br>
+
+    <a name="2"><h2>Compared Models</h2></a>
+    <p>
+    <!-- M0: reconstructed from mel spectrogram. <br>
+    GRU-based: proposed by Guo et al. to achieve GRU-based context understanding.<br>
+    M2CTTS: proposed by Xue et al for multi-modal context understanding (M2CTTS-M6).<br>
+    CONCSS-w/o-APM: The proposed framework without APM module. With regard to various contrastive learning strategies, we ran ablation studies as follows:<br>
+    S1: adopts basic contrastive loss proposed by Chopra et al. Besides, it does not employ the sampling strategy.<br>
+    S2: utilizes triplet loss without using the sampling strategy.<br>
+    S3: employs triplet loss and negative sampling strategy, as illustrated in a certain section.<br>
+    CONCSS: The proposed CSS framework, denoted as S4.<br> -->
+    To verify the effectiveness of our proposed method in conversational speech synthesis, we compare different approaches with different historical context modeling, and they all employ VITS as synthesis backbone.
+    <ul>
+        <li><strong>Groundtruth</strong>: denoted as <strong>"M0"</strong>.</li>
+        <li><strong>No Context Modeling</strong>: vanilla VITS which has no additional conditional input except phoneme sequences and speaker information, denoted as <strong>"M1"</strong>.</li>
+        <li><strong>GRU-based</strong>: The model is denoted as <strong>"M2"</strong>, where textual context embedding is compassed by a uni-directional gated recurrent unit (GRU) to model context dependency.</li>
+        <li><strong>Commonsense-based Context Modeling</strong>: This method use context modeling similar to CMCU, except it only adopts textual feature and ignores acoustic feature in context dependency modeling, denoted as <strong>"M3"</strong>.</li>
+        <li><strong>CMCU-based Context Modeling (Proposed)</strong>: Our proposed method denoted as <strong>"M4"</strong>.</li>
+      </ul>
+    <br>
+    <br>
+
+<a name="1"><h2>Model Architecture</h2></a>
+        <div>
+        <br />
+        <p style="text-align: center">
+        <img src="./cmcu-css.png" width="800" height="600"/>
+        </p>
+        <p>
+        <figcaption style="text-align:center;">
+        </font>
+        <font size=3>
+                Fig.1: Overview of our proposed conversational speech synthesis system CMCU-CSS that incorporates the Multi-modal Commonsense-based Context Understanding (CMCU) module with speech synthesis framework VITS.
+        </font>
+        </figcaption><br><br>
+        </p>
+        </div>
+        <div>
+        <br />
+        <p style="text-align: center">
+          <img src="./cmcu.png" width="1200" height="600"/>
+        </p>
+        <p>
+        <figcaption style="text-align:center;">
+          </font>
+          <font size=3>
+              Fig.2: Details of multi-modal features and commonsense knowledge extraction in our framework.
+          </font>
+        </figcaption><br><br>
+        </p>
+      </div>
+      <p>
+      As shown in Fig.1, the whole conversational speech synthesis framework CMCU-CSS that we propose has six parts: 1) CMCU module, 2) text encoder, 3) posterior encoder, 4) flow-based decoder, 5) stochastic duration predictor, and 6) HiFi-GAN generator.
+      Moreover, Fig.2 illustrates details of multi-modal features and commonsense knowledge extraction in our framework.
+      </p>
+      <br>
+      <br>    
+<a name="3">
+        <h2>Evaluation on DailyTalk Dataset</h2>
+</a>
+        
+        <!-- <p>
+            M0: groundtruth. <br>
+            M1: baseline model. <br>
+            M2: baseline model with GRU. <br>
+            M3: baseline model with GRU and commonsense. <br>
+            M4: baseline model with GRU, commonsense and multi-modal. <br>
+        </p>         -->
+        
+        
+        <h3>Sample 6_0_d2187</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/6_0_d2187/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: No, there's no such section. The dairy section is where you'll find milk and cheese.<br>A[neu]: What's Condiments?<br>B[neu]: That's where you'll find things like salt and pepper.<br>A[neu]: Oh, I see.<br>B[neu]: Umm... Let's go to aisle four to pick up some pasta for tonight.<br><b>A[hap]: Great! Pasta for dinner.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2187/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2187/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2187/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2187/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2187/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 8_1_d9</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/8_1_d9/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[neu]: Poor boy! But don't worry. Here are two pills made in Germany. It's really effective. He will be just fine.<br>B[neu]: Thank you so much.<br>A[neu]: Take some with you next time, just in case.<br>B[neu]: Sorry to interrupt, but my brother is still sleeping.<br>A[neu]: You mean the boy who felt carsick just now?<br><b>B[neu]: Yes. It's so strange that he slept all the time after taking the pills.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_1_d9/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_1_d9/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_1_d9/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_1_d9/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_1_d9/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 10_0_d1710</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/10_0_d1710/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: We can't put up with it any more.<br>A[neu]: We'll play the CD loud, is that all right?<br>B[neu]: Umm I don't think so.<br>A[neu]: What should we do?<br>B[neu]: Why don't we call them?<br><b>A[neu]: Good idea.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/10_0_d1710/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/10_0_d1710/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/10_0_d1710/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/10_0_d1710/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/10_0_d1710/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 12_0_d1078</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/12_0_d1078/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: Well, I'm not so sure. Most of my make-up is brown.<br>A[neu]: Why don't you wear purple eye shadow for a change? We also have lipstick to go with it.<br>B[neu]: Can I try it?<br>A[neu]: Sure. Are you wearing any make-up?<br>B[neu]: No.<br><b>A[neu]: Have a seat, please. Now, here is the mirror. How do you like it?</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d1078/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d1078/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d1078/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d1078/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d1078/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 5_0_d1460</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/5_0_d1460/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: May I help you?<br>A[neu]: Yes. I'm looking for some perfume. Do you have perfumes with a light scent?<br>B[neu]: How about this one? It smells like green tea and is our best seller. Try it.<br>A[neu]: It does smell good, How much is it?<br>B[neu]: It goes for fourty dollars.<br><b>A[neu]: OK. I'll take this one.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1460/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1460/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1460/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1460/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1460/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 6_0_d1676</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/6_0_d1676/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[hap]: Sure did. It's a beauty. Where do you want it?<br>A[hap]: Let's put it over there.<br>B[hap]: Let's go to work. We want to have the tree ready to light up by evening.<br>A[hap]: Let's string the lights first. Then we won't have to mess up the decorations.<br>B[hap]: Hand me some globes and paper flowers, I'll put them on these top branches.<br><b>A[hap]: There, umm... we're about done.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1676/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1676/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1676/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1676/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1676/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 6_0_d2321</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/6_0_d2321/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: I'd like to buy a toy car for my son.<br>A[neu]: How about this one?<br>B[neu]: It looks nice. How much is it?<br>A[neu]: They're three-hundred dollars.<br>B[neu]: Oh, I'm afraid it's too expensive. Can you show me something cheaper?<br><b>A[neu]: OK, umm, this one is one hundred and twenty. It's the cheapest here.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2321/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2321/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2321/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2321/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d2321/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 5_0_d739</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/5_0_d739/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: Why are there still so many people overweight despite the current fitness craze?<br>A[neu]: Well, there are certain factors that effect people's size and weight.<br>B[neu]: What are they?<br>A[neu]: Umm one study said that low-income groups have a higher percentage of over-weight people than higher income families.<br>B[neu]: Why?<br><b>A[neu]: The survey said that the low, income groups eat more junk food on a daily basis.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d739/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d739/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d739/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d739/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d739/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 9_1_d1066</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/9_1_d1066/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[neu]: How much does it cost?<br>B[neu]: Fifty dollars.<br>A[surp]: Fifty dollars. That's too much.<br>B[neu]: How about this one? It's on sale for only thirty five dollars.<br>A[neu]: I don't like that one.<br><b>B[neu]: How about the one next to the black gloves? It's very similar to the one you like.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/9_1_d1066/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/9_1_d1066/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/9_1_d1066/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/9_1_d1066/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/9_1_d1066/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 14_0_d2344</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/14_0_d2344/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[hap]: Really? I bought a same one last week. It's surprising that there is something we both like. Well, what do you think of these ceramic cups?<br>A[neu]: Come on. They look so cheap. Something else, please.<br>B[neu]: What about this picture? I think Benjamin would like it.<br>A[neu]: Don't underestimate his taste. I don't think he'd like it.<br>B[neu]: Don't be so sure. He loves the vase I bought here last week.<br><b>A[neu]: Yeah. Well, anyway, it's up to you. But I can tell that you come here often.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/14_0_d2344/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/14_0_d2344/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/14_0_d2344/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/14_0_d2344/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/14_0_d2344/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 5_0_d1478</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/5_0_d1478/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: I'm so hungry! I haven't late eaten all day!<br>A[neu]: Take your mind off it. Look, Crys. This magazine is on China's top ten beauties!<br>B[neu]: They're all so thin! Her cheekbones are great.<br>A[neu]: She doesn't have an ounce of fat on her face.<br>B[neu]: Umm the mag says she's one sixty five centimeters tall and thirty eight kilos. If only we could be that thin then...<br><b>A[neu]: Not even drinking milk for one month would get us like that.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1478/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1478/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1478/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1478/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_0_d1478/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 6_0_d1730</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/6_0_d1730/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[hap]: Thanks to you. I'm totally pumped up.<br>A[hap]: Umm so you are happy that you made the decision to join us.<br>B[neu]: I surely am. But still there is one single problem.<br>A[neu]: What's that?<br>B[neu]: I eat more and more these days. And it puts even more weight on me.<br><b>A[neu]: It's not good to start with too much work-out at the beginning. How about trying something else?</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1730/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1730/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1730/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1730/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1730/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 7_1_d563</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/7_1_d563/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[neu]: But I can't find anything in my size here.<br>B[neu]: Umm you're small, but you're not a child.<br>A[ang]: Well, there's nothing I can do about my height!<br>B[neu]: There's a petite section that you can check out.<br>A[neu]: What's in the petite section?<br><b>B[neu]: It has clothes in small sizes for small women.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_1_d563/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_1_d563/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_1_d563/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_1_d563/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_1_d563/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 12_0_d378</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/12_0_d378/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[hap]: Definitely. rich or poor, dogs always love their masters.<br>A[neu]: How about cats? Have you ever had one for a pet?<br>B[neu]: I had one a few months ago, but she ended up running away.<br>A[neu]: How did that happen?<br>B[neu]: She left through a window that was open one night and never returned.<br><b>A[neu]: You must have been devastated!</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d378/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d378/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d378/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d378/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/12_0_d378/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 5_1_d986</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/5_1_d986/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[neu]: Mary, how was your date with John?<br>B[neu]: It's OK. It seems we have a lot in common.<br>A[neu]: Oh, really. That is great news. What does he look like?<br>B[neu]: He is tall and slim, fair-haired.<br>A[neu]: Sounds like he is pretty cute. What do you think of him?<br><b>B[neu]: He is a nice guy and very considerate. I was impressed with how smart he was and he has a great sense of humor.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_1_d986/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_1_d986/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_1_d986/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_1_d986/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/5_1_d986/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 7_0_d147</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/7_0_d147/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: Won't you watch TV?<br>A[neu]: What's on TV tonight \? Is there a football match?<br>B[neu]: The TV station will air the World Cup football match alive at eight:thirty.<br>A[surp]: Really? Who will play?<br>B[neu]: Umm the Brazilian team versus the American team. Don't miss it.<br><b>A[neu]: That's cool. I'll watch it.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d147/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d147/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d147/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d147/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d147/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 7_0_d1171</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/7_0_d1171/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: Driver, can you please speed up? I m afraid I might miss the flight.<br>A[sad]: I'm sorry, madam, there’s a limit to the speed.<br>B[ang]: Damn it! I think I'm going to miss the plane.<br>A[neu]: I'm sorry about that. What’s your flight time?<br>B[neu]: At two.<br><b>A[neu]: Don’t worry, madam. Umm I guess we should get there not later than one:thirty p.m.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d1171/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d1171/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d1171/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d1171/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/7_0_d1171/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 13_0_d2401</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/13_0_d2401/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: We deal with kid's clothing, women's clothing, and men's clothing. You name it we deal with it.<br>A[neu]: That's nice. They provided us with convenient choice.<br>B[neu]: As for the regular customers, we have some favorable terms for them.<br>A[neu]: I'd like to hear that.<br>B[neu]: For the substantial regular customers, we offer five percent commissions.<br><b>A[hap]: That sounds attractive, all right, how about that we sign a one year contract?</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d2401/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d2401/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d2401/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d2401/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d2401/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 6_0_d1521</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/6_0_d1521/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: No, thanks, I'll pass. It looks very tempting though.<br>A[neu]: I thought strawberry cake with cream cheese frosting was your favorite?<br>B[neu]: It is. I'm on a diet and strawberry cream cheese cake is not on it.<br>A[neu]: A diet? What for? You are in great shape.<br>B[neu]: I went to the doctor the other day. My cholesterol is up.<br><b>A[sad]: Oooo. This sounds serious.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1521/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1521/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1521/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1521/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/6_0_d1521/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 13_0_d739</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/13_0_d739/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: What's that?<br>A[neu]: Nobody exercises any more-not even kids! The average American home has the TV on for six hours a day!<br>B[surp]: Wow! No wonder people are so fat. Say, Carl, looks like you could be doing a bit more exercising.<br>A[neu]: Yeah, I guess so.<br>B[neu]: You should consider eating healthier food and getting some more exercise.<br><b>A[neu]: Hey, I started a diet and lost ten pounds.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d739/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d739/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d739/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d739/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/13_0_d739/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 8_0_d1399</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/8_0_d1399/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[neu]: Umm I think it's a basketball match on channel five.<br>A[neu]: Do you mind if we switch over?<br>B[neu]: Well, I'd rather see a movie.<br>A[neu]: What's the movie?<br>B[neu]: ' Star war '.<br><b>A[hap]: It must be interesting.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_0_d1399/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_0_d1399/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_0_d1399/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_0_d1399/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/8_0_d1399/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample 11_1_d1282</h3>
+        <h4>history</h4>
+        <p><audio src="sample/dailytalk/11_1_d1282/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[neu]: It's more than I can afford. Can I make an offer?<br>B[neu]: How much are you willing to pay?<br>A[neu]: Shall we make it two fifty dollars?<br>B[sad]: No. That price would hardly cover the cost.<br>A[neu]: What about two sixty dollars?<br><b>B[neu]: Two seventy five dollars is the lowest price I can offer.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/dailytalk/11_1_d1282/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/11_1_d1282/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/11_1_d1282/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/11_1_d1282/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/dailytalk/11_1_d1282/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        <br>
+        <br>
+        <a name="4">
+            <h2>Evaluation on IEMOCAP Dataset</h2>
+        </a>
+        
+        <!-- <p>
+            M0: groundtruth. <br>
+            M1: baseline model. <br>
+            M2: baseline model with GRU. <br>
+            M3: baseline model with GRU and commonsense. <br>
+            M4: baseline model with GRU, commonsense and multi-modal. <br>
+        </p>         -->
+        
+        
+        <h3>Sample Ses02F_impro07_F035</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses02F_impro07_F035/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[exc]: And you'll be like...<br>B[exc]: Student. I'm a student. Yes I am, Thank you very much.<br>B[exc]: [BREATHING]<br>A[exc]: A U.S.C. graduate now. You're set.<br>B[exc]: I know.  I'm excited.<br>B[exc]: Well, that'll take a while. [GARBAGE]<br>B[exc]: That's going to be a lot of work.<br>B[exc]: But, it'll be fine, I mean.  I'm so excited. It's going to be so fun.<br>B[exc]: I know, and I mean the area's not great, but like the school makes up for it. It'll be fine. It'll be good.<br>A[exc]: You're getting close to the beach.  I mean geez.<br><b>B[exc]: I know. I know. So fun.  I can't wait.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02F_impro07_F035/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02F_impro07_F035/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02F_impro07_F035/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02F_impro07_F035/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02F_impro07_F035/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses02M_script01_2_F013</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses02M_script01_2_F013/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[fru]: Then why is she still single, I mean New York is full of men, why isn't she married? Probably a hundred people told her she's crazy but she's waited.<br>A[fru]: How do you know why she has waited?<br>B[fru]: She knows what I know, that's why. She's faithful as a rock. In my worst moments I think of her waiting and I know again that I'm right.<br>A[fru]: Look it's a nice day, what are we arguing for?<br>B[fru]: Nobody in this house dares take her faith away Joe. Strangers might, but not his father, not his brother.<br>A[fru]: What do you want me to do about it?<br>B[ang]: I want you to act like he's coming back, both of you. Don't you think I haven't noticed since he invited her, I won't stand for any nonsense<br>A[fru]: But Kate<br>B[fru]: Because if he's not coming back, I'll kill myself. And laugh -- laugh at me but<br>A[fru]: Calm yourself.<br><b>B[sad]: I need you to believe with me; I can't stand all alone.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F013/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F013/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F013/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F013/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F013/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses03M_script02_2_M022</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses03M_script02_2_M022/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[neu]: Well, we're going to see it.<br>B[ang]: No we won't.  I mean, God, this isn't about the fish Augie.<br>A[fru]: What...I've been trying to, I've been trying to figure out the point where we went wrong and I can't seem to pinpoint that moment.<br>A[neu]: Let's see I took a shower, you were watching the news, you said hey, hey the Grunions are running tonight and I said great let's go, I feel lucky tonight.<br>A[fru]: And then I'm putting the animals out in the yard, I'm pulling the car out of the garage, putting my jacket on.<br>B[fru]: Look, do you remember the first time we came here?<br>B[sad]: We thought I was pregnant.<br>A[neu]: Wait a minute.  I've got it.<br>A[neu]: It was in the car right?  Driving past the Knickerbocker Liquor Locker...<br>A[neu]: And you said let's get some champagne and I said time's a wasting or something like that.<br><b>A[neu]: You want this to be like the other time right?  That's it right?</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_M022/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_M022/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_M022/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_M022/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_M022/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses04F_impro07_M046</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses04F_impro07_M046/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[exc]: Wait, you've been there before?<br>B[exc]: On occasion I've heard of it.<br>A[exc]: Oh, so well then you know that it's awesome.<br>B[exc]: Yeah.  Totally.<br>A[exc]: Right, so we'll go there and then- and then we'll get some ice cream and maybe we'll go putt-putt golfing.<br>B[exc]: I am totally down with the ice cream.<br>A[neu]: Okay.  Putt-putt golfing?<br>B[exc]: Eh, we can work that part out.<br>A[exc]: Yeah, you want to go.  No, you want to go. You want to go.<br>B[exc]: Alright.<br><b>A[exc]: I can see it in your eyes.  You want to go.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M046/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M046/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M046/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M046/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M046/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses01M_impro01_M019</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses01M_impro01_M019/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[fru]: I don't where it is though, I don't have with me.  Can I get it from somewhere?  I mean...<br>B[ang]: What do you expect me to do?<br>A[fru]: I probably have to go wait another line to get my birth certificate don't I?<br>B[ang]: Probably.<br>A[fru]: You're very helpful.  What's your name?<br>A[fru]: So can you help me or not?<br>B[fru]: I am..I don't..I don't understand what you want.  A driver's license or a California ID.<br>A[fru]: Okay. [BREATHING]<br>A[fru]: I need California ID.<br>A[fru]: On top of these other two forms of ID which I already have.<br><b>A[fru]: No, I don't have driver's license.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M019/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M019/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M019/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M019/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M019/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses03M_impro08a_F013</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses03M_impro08a_F013/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[neu]: Um- I think part of it has to do with the network being down.  It's been having some trouble the last few weeks--<br>B[fru]: Okay.  Well that is, that is fine and all.  I don't care.  I really don't care because I want my phone to work that's all.<br>B[fru]: That is I am paying you guys for service and I'm not getting any service.  I get, I get just dropped calls all the time and now it's completely not working at all.  I can't even call out, nine one one probably wouldn't even work.<br>A[neu]: I understand--we're not-<br>A[neu]: No.  Okay.  We're not charging you for any of these months.  We're going to give you three months free.<br>B[fru]: Well you better.  You better give me a whole freaking new phone that's what you better do.<br>A[neu]: We can give you a new phone--<br>B[fru]: I want a camera phone actually.<br>A[neu]: We can do that.  We can do that.  You just have to sign a one-year contract though with the--<br>B[fru]: No, no, no...  I'm done with these contract business because this is what can happen.<br><b>B[ang]: You sign the contract and then down the line the phone doesn't work and you're stuck, you can't go to a new...no.  No contracts for me.  You give me a new phone.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F013/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F013/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F013/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F013/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F013/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses04F_impro07_M077</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses04F_impro07_M077/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[neu]: But that'll fit you  because you're a dork.<br>B[exc]: [LAUGHTER].<br>B[exc]: [LAUGHTER].<br>A[exc]: I dork.<br>B[exc]: No.  But I'm thinking I might, you know, like audition for a play or something.  I don't really want to do the sorority thing.  I'm not really feeling that vibe with the<br>A[neu]: Yeah, you don't want to do the sorority thing because you'll probably get used and abused by<br>A[neu]: lots of drunk frat boys<br>A[neu]: Yeah.<br>B[exc]: What have you heard about the Greek system?<br>A[neu]: I mean it's not really free because you have to pay for it, but yeah.<br><b>A[neu]: Well do you think you're going to live on campus or off campus your first year?</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M077/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M077/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M077/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M077/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_M077/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses04F_script02_1_F013</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses04F_script02_1_F013/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[ang]: There is no point in coming down here.<br>A[fru]: Right.<br>B[fru]: That's my point.<br>A[neu]: That's my point too.<br>B[fru]: So let's go home.<br>A[fru]: No, no, no.  That's not my point.  My point is is that there's no point in coming down here if we just leave.  Don't you want to see it?<br>B[fru]: Not particularly.<br>B[ang]: I just don't.  It's stupid.<br>A[fru]: Honey this is natural phenomenon.  I mean this only happens once a year.  This is a great opportunity.<br>A[exc]: Think about the people in Kansas.  They'd have to get plane tickets and hotel reservations to come see this.  We're just forty minutes away.  It's too good to pass up.<br><b>B[ang]: Pass up what?  These little fish swim onto the beach, flop around, and then swim away and then they die.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_F013/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_F013/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_F013/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_F013/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_F013/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses04F_script02_1_M031</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses04F_script02_1_M031/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[fru]: Yeah, they do.<br>B[fru]: Oh, Augie.<br>A[fru]: Okay but it's fish who do something none of the other fish do<br>A[exc]: like the swallows returning to Capistrano or the lemmings throwing themselves off the cliffs, like that.  There's mystery here and magic<br>A[fru]: a little bit of the unexplainable.  I don't see how you cannot be interested.<br>B[ang]: I'm just not.<br>B[ang]: Yes.<br>A[fru]: I don't get it.  The first time we came here to see it you said it was the best night of your life and last year I remember distinctly you were so excited to get here.  You stubbed your toe rushing me out the door and didn't even notice until we were in the car.<br>A[fru]: We weren't in a good spot.<br>B[ang]: We didn't see them the first time either.<br><b>A[ang]: We just weren't in a good spot.  This is a much better spot.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M031/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M031/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M031/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M031/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M031/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses04F_script02_1_M027</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses04F_script02_1_M027/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[fru]: Honey this is natural phenomenon.  I mean this only happens once a year.  This is a great opportunity.<br>A[exc]: Think about the people in Kansas.  They'd have to get plane tickets and hotel reservations to come see this.  We're just forty minutes away.  It's too good to pass up.<br>B[ang]: Pass up what?  These little fish swim onto the beach, flop around, and then swim away and then they die.<br>A[fru]: Yeah but that moment on the beach is the highlight of their little lives.  All that flopping around is laying eggs or what do you, spawning or mating something like that.<br>A[exc]: This is the big night for these guys.  Life's last orgy.<br>B[ang]: What are you so excited about?  This isn't a moon landing we're talking about.  It's fish.  It's fish nobody even eats.<br>A[fru]: Yeah, they do.<br>B[fru]: Oh, Augie.<br>A[fru]: Okay but it's fish who do something none of the other fish do<br>A[exc]: like the swallows returning to Capistrano or the lemmings throwing themselves off the cliffs, like that.  There's mystery here and magic<br><b>A[fru]: a little bit of the unexplainable.  I don't see how you cannot be interested.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M027/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M027/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M027/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M027/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_script02_1_M027/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses01M_impro01_F022</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses01M_impro01_F022/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[fru]: Okay. [BREATHING]<br>A[fru]: I need California ID.<br>A[fru]: On top of these other two forms of ID which I already have.<br>A[fru]: No, I don't have driver's license.<br>A[ang]: Did you even look at the form?  I filled it out all these questions--<br>B[ang]: Don't raise your voice with me.<br>B[ang]: Don't talk to me like I'm a child.<br>A[fru]: Okay.<br>B[ang]: Do you know how long I've been working here? How long have you lived in California?<br>A[fru]: If it makes you stop acting like a child.<br><b>B[ang]: Maybe you never been to the D.M.V. before, maybe you should get back in line.  You know what?  sit in line again and if you get my number ask for different one.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_F022/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_F022/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_F022/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_F022/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_F022/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses01M_impro01_M012</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses01M_impro01_M012/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[fru]: Yes.  I'm supposed to have three forms of ID for this.  It's a long story, I'm supposed to have three forms of ID for this other job I really don't get into but I need another...<br>A[fru]: I have it right here, yes.<br>B[ang]: No, I need your ID to give you a second ID.<br>B[ang]: It's really simple if you have a problem with it... Maybe you should--<br>A[fru]: But that's...<br>A[fru]: That's why I'm here, that's why I was waiting in this line.  I need to get another form of ID.<br>A[neu]: No, I don't have a passport.<br>B[fru]: You have a birth certificate?<br>A[fru]: I don't where it is though, I don't have with me.  Can I get it from somewhere?  I mean...<br>B[ang]: What do you expect me to do?<br><b>A[fru]: I probably have to go wait another line to get my birth certificate don't I?</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M012/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M012/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M012/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M012/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M012/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses04F_impro07_F041</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses04F_impro07_F041/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[exc]: actually, you know, there's this- there's this really cool restaurant, um, I don't know if you-  it's Red Lobster.  It's like down on<br>B[exc]: [LAUGHTER]<br>A[exc]: Vermont.<br>A[exc]: Wait, you've been there before?<br>B[exc]: On occasion I've heard of it.<br>A[exc]: Oh, so well then you know that it's awesome.<br>B[exc]: Yeah.  Totally.<br>A[exc]: Right, so we'll go there and then- and then we'll get some ice cream and maybe we'll go putt-putt golfing.<br>B[exc]: I am totally down with the ice cream.<br>A[neu]: Okay.  Putt-putt golfing?<br><b>B[exc]: Eh, we can work that part out.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F041/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F041/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F041/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F041/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F041/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses02M_script01_2_F011</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses02M_script01_2_F011/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[ang]: -She's not his girl Joe; she knows she's not.<br>A[neu]: You can't read her mind.<br>B[fru]: Then why is she still single, I mean New York is full of men, why isn't she married? Probably a hundred people told her she's crazy but she's waited.<br>A[fru]: How do you know why she has waited?<br>B[fru]: She knows what I know, that's why. She's faithful as a rock. In my worst moments I think of her waiting and I know again that I'm right.<br>A[fru]: Look it's a nice day, what are we arguing for?<br>B[fru]: Nobody in this house dares take her faith away Joe. Strangers might, but not his father, not his brother.<br>A[fru]: What do you want me to do about it?<br>B[ang]: I want you to act like he's coming back, both of you. Don't you think I haven't noticed since he invited her, I won't stand for any nonsense<br>A[fru]: But Kate<br><b>B[fru]: Because if he's not coming back, I'll kill myself. And laugh -- laugh at me but</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F011/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F011/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F011/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F011/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_F011/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses03M_impro02_M020</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses03M_impro02_M020/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[sad]: It's not the same thing.  It's not like having you here.<br>B[sad]: I can't do this.<br>A[neu]: You can do it.  Alright?  You can, you can be strong, you can be strong for both of us alright?<br>B[sad]: I'm sick of being strong-- --for us.<br>A[sad]: I don't know what to do.<br>A[fru]: I don't want to - I don't- I don't want to go.<br>A[fru]: What am I supposed to do?<br>B[fru]: You can say no?<br>A[sad]: You know I can't say no.<br>B[fru]: You could.  You really could.  You could-- --get into another line of work.  I could start working after Anna's born?<br><b>A[fru]: The last guy who said no was fired.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro02_M020/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro02_M020/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro02_M020/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro02_M020/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro02_M020/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses03M_impro08a_F012</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses03M_impro08a_F012/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[fru]: I don't, I don't know what the problem is.  That's what I want you guys to...why is my service not turned on?  And I paid my bills on time.  I don't understand.<br>A[neu]: Um- I think part of it has to do with the network being down.  It's been having some trouble the last few weeks--<br>B[fru]: Okay.  Well that is, that is fine and all.  I don't care.  I really don't care because I want my phone to work that's all.<br>B[fru]: That is I am paying you guys for service and I'm not getting any service.  I get, I get just dropped calls all the time and now it's completely not working at all.  I can't even call out, nine one one probably wouldn't even work.<br>A[neu]: I understand--we're not-<br>A[neu]: No.  Okay.  We're not charging you for any of these months.  We're going to give you three months free.<br>B[fru]: Well you better.  You better give me a whole freaking new phone that's what you better do.<br>A[neu]: We can give you a new phone--<br>B[fru]: I want a camera phone actually.<br>A[neu]: We can do that.  We can do that.  You just have to sign a one-year contract though with the--<br><b>B[fru]: No, no, no...  I'm done with these contract business because this is what can happen.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F012/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F012/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F012/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F012/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_impro08a_F012/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses02M_script01_2_M018</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses02M_script01_2_M018/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[fru]: Calm yourself.<br>B[sad]: I need you to believe with me; I can't stand all alone.<br>A[fru]: Calm yourself.<br>B[fru]: Even last week there was a man who showed up in Detroit missing longer than Larry, you read it yourself.<br>A[fru]: All right. All right. Calm yourself.<br>B[fru]: Just you above all need to believe.<br>B[fru]: Don't stop believing.<br>A[ang]: What does that mean, me above all?<br>A[ang]: Look at you -- look at you shaking.<br>B[fru]: I can't help it.<br><b>A[fru]: What have I got to hide? What the hell is the matter with you, Kate?</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_M018/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_M018/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_M018/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_M018/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses02M_script01_2_M018/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses01M_impro01_M009</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses01M_impro01_M009/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[fru]: Okay, so filled out all these forms  --<br>A[fru]: and I have This form of ID here so...<br>A[neu]: Yes, Jones.<br>B[fru]: What are you... what's...What are you applying for?<br>A[fru]: I'm just applying for another ID.<br>A[fru]: Yes.  I'm supposed to have three forms of ID for this.  It's a long story, I'm supposed to have three forms of ID for this other job I really don't get into but I need another...<br>A[fru]: I have it right here, yes.<br>B[ang]: No, I need your ID to give you a second ID.<br>B[ang]: It's really simple if you have a problem with it... Maybe you should--<br>A[fru]: But that's...<br><b>A[fru]: That's why I'm here, that's why I was waiting in this line.  I need to get another form of ID.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M009/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M009/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M009/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M009/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses01M_impro01_M009/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses04F_impro07_F029</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses04F_impro07_F029/history/history.wav" controls="" preload=""></audio></p>
+        <p>A[neu]: No, no.  It's totally cool.  I mean, like, this friend of mine he was- he's been undecided now for, like, the past like eleven years of his life.<br>B[exc]: okay.  Well I'm not going to be undecided forever. [LAUGHTER]<br>A[neu]: Uh, well-<br>B[exc]: And it's so close so you can come visit me all the time.<br>A[neu]: You- you- you'll find.<br>B[exc]: So this works out perfectly.  Because I was worried if I didn't get in to U.S.C., then I would have to go somewhere far away and then-<br>A[neu]: You'd have to, like go somewhere else, and, you know, we would be apart, and that would suck.<br>B[exc]: Everything worked out perfectly.<br>A[exc]: That's awesome.<br>B[exc]: I know.  We should have a party.<br><b>B[exc]: An I got accepted to U.S.C. party.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F029/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F029/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F029/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F029/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses04F_impro07_F029/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        
+        <h3>Sample Ses03M_script02_2_F033</h3>
+        <h4>history</h4>
+        <p><audio src="sample/iemocap/Ses03M_script02_2_F033/history/history.wav" controls="" preload=""></audio></p>
+        <p>B[fru]: No...No...No...<br>B[fru]: No...<br>B[ang]: I want things to turn out the way that they're supposed to be.<br>A[ang]: Welcome to the human race.<br>A[ang]: Do you think that this is what I had in mind?  That four years down the line that we'd get married and come to the beach and argue with each other over fish?  No.<br>A[ang]: I was just like you.  I thought it was going to be all peaches and roses and everything great and the sand in our toes and the wind in our hair and the fish will always come and the bills will pay themselves and we'd have three big fat rosy kids...<br>A[ang]: ...and you know?  Baby the jokes on us.  Because you know what you get?  Do you know what you get Carla?  You get this.<br>B[fru]: This what...what's this?  This isn't anything. Alright.  Sure.  Standing on the beach, fighting and waiting.<br>A[ang]: Yes it is.<br>A[ang]: Right.<br><b>B[ang]: Cause everything isn't anything like I thought it would be.</b></b></p>
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align: center"><strong>M0</strong></th>
+                    <th style="text-align: center"><strong>M1</strong></th>
+                    <th style="text-align: center"><strong>M2</strong></th>
+                    <th style="text-align: center"><strong>M3</strong></th>
+                    <th style="text-align: center"><strong>M4</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_F033/current/M0.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_F033/current/M1.wav" 
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_F033/current/M2.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_F033/current/M3.wav"
+                            controls="" preload=""></audio></td>
+                    <td style="text-align: left"><audio src="sample/iemocap/Ses03M_script02_2_F033/current/M4.wav"
+                            controls="" preload=""></audio></td>
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+    
+    </section>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</html>

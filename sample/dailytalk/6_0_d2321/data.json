@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "6_0_d2321",
+        "text": "OK, umm, this one is one hundred and twenty. It's the cheapest here.",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "1_1_d2321",
+            "2_0_d2321",
+            "3_1_d2321",
+            "4_0_d2321",
+            "5_1_d2321"
+        ],
+        "text": [
+            "I'd like to buy a toy car for my son.",
+            "How about this one?",
+            "It looks nice. How much is it?",
+            "They're three-hundred dollars.",
+            "Oh, I'm afraid it's too expensive. Can you show me something cheaper?"
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses01M_impro01_M009",
+        "text": "That's why I'm here, that's why I was waiting in this line.  I need to get another form of ID.",
+        "speaker": 0,
+        "emotion": 5
+    },
+    "history": {
+        "id": [
+            "Ses01M_impro01_M001",
+            "Ses01M_impro01_M002",
+            "Ses01M_impro01_M003",
+            "Ses01M_impro01_F004",
+            "Ses01M_impro01_M005",
+            "Ses01M_impro01_M006",
+            "Ses01M_impro01_M007",
+            "Ses01M_impro01_F007",
+            "Ses01M_impro01_F008",
+            "Ses01M_impro01_M008"
+        ],
+        "text": [
+            "Okay, so filled out all these forms  --",
+            "and I have This form of ID here so...",
+            "Yes, Jones.",
+            "What are you... what's...What are you applying for?",
+            "I'm just applying for another ID.",
+            "Yes.  I'm supposed to have three forms of ID for this.  It's a long story, I'm supposed to have three forms of ID for this other job I really don't get into but I need another...",
+            "I have it right here, yes.",
+            "No, I need your ID to give you a second ID.",
+            "It's really simple if you have a problem with it... Maybe you should--",
+            "But that's..."
+        ],
+        "speaker": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+        ],
+        "emotion": [
+            5,
+            5,
+            2,
+            5,
+            5,
+            5,
+            5,
+            3,
+            3,
+            5
+        ]
+    }
+}

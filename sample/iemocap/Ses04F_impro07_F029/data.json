@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses04F_impro07_F029",
+        "text": "An I got accepted to U.S.C. party.",
+        "speaker": 7,
+        "emotion": 4
+    },
+    "history": {
+        "id": [
+            "Ses04F_impro07_M021",
+            "Ses04F_impro07_F021",
+            "Ses04F_impro07_M022",
+            "Ses04F_impro07_F022",
+            "Ses04F_impro07_M023",
+            "Ses04F_impro07_F024",
+            "Ses04F_impro07_M026",
+            "Ses04F_impro07_F027",
+            "Ses04F_impro07_M028",
+            "Ses04F_impro07_F028"
+        ],
+        "text": [
+            "No, no.  It's totally cool.  I mean, like, this friend of mine he was- he's been undecided now for, like, the past like eleven years of his life.",
+            "okay.  Well I'm not going to be undecided forever. [LAUGHTER]",
+            "Uh, well-",
+            "And it's so close so you can come visit me all the time.",
+            "You- you- you'll find.",
+            "So this works out perfectly.  Because I was worried if I didn't get in to U.S.C., then I would have to go somewhere far away and then-",
+            "You'd have to, like go somewhere else, and, you know, we would be apart, and that would suck.",
+            "Everything worked out perfectly.",
+            "That's awesome.",
+            "I know.  We should have a party."
+        ],
+        "speaker": [
+            6,
+            7,
+            6,
+            7,
+            6,
+            7,
+            6,
+            7,
+            6,
+            7
+        ],
+        "emotion": [
+            2,
+            4,
+            2,
+            4,
+            2,
+            4,
+            2,
+            4,
+            4,
+            4
+        ]
+    }
+}

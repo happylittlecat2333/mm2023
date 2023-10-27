@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses03M_impro08a_F013",
+        "text": "You sign the contract and then down the line the phone doesn't work and you're stuck, you can't go to a new...no.  No contracts for me.  You give me a new phone.",
+        "speaker": 5,
+        "emotion": 3
+    },
+    "history": {
+        "id": [
+            "Ses03M_impro08a_M006",
+            "Ses03M_impro08a_F008",
+            "Ses03M_impro08a_F009",
+            "Ses03M_impro08a_M007",
+            "Ses03M_impro08a_M008",
+            "Ses03M_impro08a_F010",
+            "Ses03M_impro08a_M009",
+            "Ses03M_impro08a_F011",
+            "Ses03M_impro08a_M010",
+            "Ses03M_impro08a_F012"
+        ],
+        "text": [
+            "Um- I think part of it has to do with the network being down.  It's been having some trouble the last few weeks--",
+            "Okay.  Well that is, that is fine and all.  I don't care.  I really don't care because I want my phone to work that's all.",
+            "That is I am paying you guys for service and I'm not getting any service.  I get, I get just dropped calls all the time and now it's completely not working at all.  I can't even call out, nine one one probably wouldn't even work.",
+            "I understand--we're not-",
+            "No.  Okay.  We're not charging you for any of these months.  We're going to give you three months free.",
+            "Well you better.  You better give me a whole freaking new phone that's what you better do.",
+            "We can give you a new phone--",
+            "I want a camera phone actually.",
+            "We can do that.  We can do that.  You just have to sign a one-year contract though with the--",
+            "No, no, no...  I'm done with these contract business because this is what can happen."
+        ],
+        "speaker": [
+            4,
+            5,
+            5,
+            4,
+            4,
+            5,
+            4,
+            5,
+            4,
+            5
+        ],
+        "emotion": [
+            2,
+            5,
+            5,
+            2,
+            2,
+            5,
+            2,
+            5,
+            2,
+            5
+        ]
+    }
+}

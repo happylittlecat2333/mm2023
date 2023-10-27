@@ -1,0 +1,38 @@
+{
+    "current": {
+        "id": "10_0_d1710",
+        "text": "Good idea.",
+        "speaker": 0,
+        "emotion": 1
+    },
+    "history": {
+        "id": [
+            "5_1_d1710",
+            "6_0_d1710",
+            "7_1_d1710",
+            "8_0_d1710",
+            "9_1_d1710"
+        ],
+        "text": [
+            "We can't put up with it any more.",
+            "We'll play the CD loud, is that all right?",
+            "Umm I don't think so.",
+            "What should we do?",
+            "Why don't we call them?"
+        ],
+        "speaker": [
+            1,
+            0,
+            1,
+            0,
+            1
+        ],
+        "emotion": [
+            1,
+            1,
+            1,
+            1,
+            1
+        ]
+    }
+}

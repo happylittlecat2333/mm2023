@@ -1,0 +1,58 @@
+{
+    "current": {
+        "id": "Ses02M_script01_2_F011",
+        "text": "Because if he's not coming back, I'll kill myself. And laugh -- laugh at me but",
+        "speaker": 3,
+        "emotion": 5
+    },
+    "history": {
+        "id": [
+            "Ses02M_script01_2_F006",
+            "Ses02M_script01_2_M007",
+            "Ses02M_script01_2_F007",
+            "Ses02M_script01_2_M008",
+            "Ses02M_script01_2_F008",
+            "Ses02M_script01_2_M009",
+            "Ses02M_script01_2_F009",
+            "Ses02M_script01_2_M010",
+            "Ses02M_script01_2_F010",
+            "Ses02M_script01_2_M011"
+        ],
+        "text": [
+            "-She's not his girl Joe; she knows she's not.",
+            "You can't read her mind.",
+            "Then why is she still single, I mean New York is full of men, why isn't she married? Probably a hundred people told her she's crazy but she's waited.",
+            "How do you know why she has waited?",
+            "She knows what I know, that's why. She's faithful as a rock. In my worst moments I think of her waiting and I know again that I'm right.",
+            "Look it's a nice day, what are we arguing for?",
+            "Nobody in this house dares take her faith away Joe. Strangers might, but not his father, not his brother.",
+            "What do you want me to do about it?",
+            "I want you to act like he's coming back, both of you. Don't you think I haven't noticed since he invited her, I won't stand for any nonsense",
+            "But Kate"
+        ],
+        "speaker": [
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2,
+            3,
+            2
+        ],
+        "emotion": [
+            3,
+            2,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            3,
+            5
+        ]
+    }
+}
